@@ -1,5 +1,6 @@
 <?php
    include('session.php');
+   include('mail.php');
    require('../connect.php');
    $query = "select id,userid,username,title,image_link,content,date from posts order by timestamp desc limit 10";
    if(isset($_GET['user'])){
@@ -60,10 +61,11 @@
                     </div>
                 <?php endwhile; ?>
             </div>
+            <p id="ajax-msg" style="text-align:center;"></p>
 
             <div class="mx-auto">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Add Post</button>
-                <button type="button" class="btn btn-dark" >Load More</button>
+                <button type="button" class="btn btn-dark" onclick="getPosts()">Load More</button>
             </div>
         </div>
 
@@ -101,5 +103,8 @@
             </div>
         </div>
         <?php include('include/footer.php'); ?>
+
+        <!-- script -->
+        <script src="js/loadposts.js"></script>
     </body>
 </html>
